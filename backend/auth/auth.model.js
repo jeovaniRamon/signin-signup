@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 mongoose.set('useCreateIndex',true);
 const userSchema = new Schema ({
-    name: {
+    nombre: {
         type: String,
         required: true,
         trim: true
@@ -13,7 +13,7 @@ const userSchema = new Schema ({
         trim: true,
         unique: true
     },
-    password:{
+    contraseña:{
         type: String,
         required: true,
         trim: true

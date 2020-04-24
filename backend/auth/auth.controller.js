@@ -3,11 +3,11 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const SECRET_KEY = 'secretKey123456';
 
-exports.createUser = (req, res, next) =>{
+exports.crearUsuario = (req, res, next) =>{
     const newUser = {
-        name: req.body.name,
-        email:req.body.email,
-        password: req.body.password
+        nombre: req.body.name,
+        email:req.body.name,
+        contraseña: req.body.password
     }
     User.create(newUser,(err,user)=>{
         if (err) return res.status(500).send('server error');
@@ -20,18 +20,18 @@ exports.createUser = (req, res, next) =>{
         res.send({user});
     });
 }
-    exports.loginUser = (req, res, next) => {
+    exports.loginUsuario = (req, res, next) => {
         const userData ={
             email: req.body.email,
-            password: req.body.password
+            contraseña: req.body.password
         }
-        User.findOne({email:userData.email},(err,user)=>{
+        User.encontrar({email:userData.email},(err,user)=>{
             if(err) return res.status(500).send('server error');
             if (!user){
                 //no existe el email
                 res.status(409).send({message: 'algo está mal'});
             }else{
-                const resultPassword = userData.password;
+                const resultPassword = userData.contraseña;
                 if(resultPassword){
                     const expiresIn = 24* 60* 60;
                     const accessToken = jwt.sign({id:user.id},SECRET_KEY, {expiresIn:expiresIn});

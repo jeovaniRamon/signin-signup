@@ -1,5 +1,5 @@
 const Users = require('./auth.controller');
 module.exports = (router) =>{
-    router.post('/register',Users.createUser);
-    router.post('/login',Users.loginUser); 
+    router.post('/registrar',Users.crearUsuario);
+    router.post('/ingresar',Users.loginUsuario); 
     }

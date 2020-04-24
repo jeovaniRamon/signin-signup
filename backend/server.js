@@ -1,15 +1,16 @@
+
+
 'use strict'
 const express = require('express');
-const authRoutes = require('./auth/auth.routes');
-const properties = require('./config/properties');
 const app = express();
-const DB = require('./config/db')
-const router = express.Router();
+const Usuario = require('./auth/auth.controller');
+const DB = require('./config/db');
 DB();
-app.use('/api', router);
-authRoutes(router);
-router.get('/',(req, res) => {
+app.get('/',(req, res) => {
     res.send('hola desde home');
 });
+app.post('/registrar', Usuario.crearUsuario);
+app.post('/ingresar', Usuario.loginUsuario);
 
-app.listen(properties.PORT, () => console.log(`Server runing on port ${properties.PORT}`));
+
+app.listen(4000, () => console.log(`servidor corriendo en el puerto 4000`));
